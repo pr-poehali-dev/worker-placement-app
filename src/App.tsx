@@ -1,28 +1,72 @@
-
+import { useState } from "react";
 import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
-import NotFound from "./pages/NotFound";
+import BottomNav from "@/components/BottomNav";
+import HomePage from "@/pages/HomePage";
+import SearchPage from "@/pages/SearchPage";
+import OrdersPage from "@/pages/OrdersPage";
+import ChatPage from "@/pages/ChatPage";
+import ProfilePage from "@/pages/ProfilePage";
+import WorkerProfilePage from "@/pages/WorkerProfilePage";
 
-const queryClient = new QueryClient();
+type Page = "home" | "search" | "orders" | "chat" | "profile";
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
+interface Worker {
+  id: number;
+  name: string;
+  specialty: string;
+  rating: number;
+  reviews: number;
+  price: string;
+  location: string;
+  available: boolean;
+  avatar: null;
+  initials: string;
+  tags: string[];
+  experience: string;
+  completedOrders: number;
+}
+
+export default function App() {
+  const [page, setPage] = useState<Page>("home");
+  const [selectedWorker, setSelectedWorker] = useState<Worker | null>(null);
+
+  const handleNavigate = (target: string) => {
+    const pages: Page[] = ["home", "search", "orders", "chat", "profile"];
+    if (pages.includes(target as Page)) {
+      setPage(target as Page);
+      setSelectedWorker(null);
+    }
+  };
+
+  const handleWorkerSelect = (worker: Worker) => {
+    setSelectedWorker(worker);
+  };
+
+  return (
     <TooltipProvider>
       <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+      <div className="max-w-lg mx-auto relative bg-background min-h-screen font-golos">
+        {selectedWorker ? (
+          <WorkerProfilePage
+            worker={selectedWorker}
+            onBack={() => setSelectedWorker(null)}
+            onChat={() => { setSelectedWorker(null); setPage("chat"); }}
+          />
+        ) : (
+          <>
+            {page === "home" && <HomePage onNavigate={handleNavigate} />}
+            {page === "search" && <SearchPage onWorkerSelect={handleWorkerSelect} />}
+            {page === "orders" && <OrdersPage />}
+            {page === "chat" && <ChatPage />}
+            {page === "profile" && <ProfilePage />}
+            <BottomNav
+              active={page}
+              onChange={(p) => { setPage(p); setSelectedWorker(null); }}
+            />
+          </>
+        )}
+      </div>
     </TooltipProvider>
-  </QueryClientProvider>
-);
-
-export default App;
+  );
+}
