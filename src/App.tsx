@@ -8,6 +8,7 @@ import OrdersPage from "@/pages/OrdersPage";
 import ChatPage from "@/pages/ChatPage";
 import ProfilePage from "@/pages/ProfilePage";
 import WorkerProfilePage from "@/pages/WorkerProfilePage";
+import MapPage from "@/pages/MapPage";
 
 type Page = "home" | "search" | "orders" | "chat" | "profile";
 
@@ -30,12 +31,18 @@ interface Worker {
 export default function App() {
   const [page, setPage] = useState<Page>("home");
   const [selectedWorker, setSelectedWorker] = useState<Worker | null>(null);
+  const [showMap, setShowMap] = useState(false);
 
   const handleNavigate = (target: string) => {
+    if (target === "map") {
+      setShowMap(true);
+      return;
+    }
     const pages: Page[] = ["home", "search", "orders", "chat", "profile"];
     if (pages.includes(target as Page)) {
       setPage(target as Page);
       setSelectedWorker(null);
+      setShowMap(false);
     }
   };
 
@@ -47,7 +54,9 @@ export default function App() {
     <TooltipProvider>
       <Toaster />
       <div className="max-w-lg mx-auto relative bg-background min-h-screen font-golos">
-        {selectedWorker ? (
+        {showMap ? (
+          <MapPage onBack={() => setShowMap(false)} />
+        ) : selectedWorker ? (
           <WorkerProfilePage
             worker={selectedWorker}
             onBack={() => setSelectedWorker(null)}

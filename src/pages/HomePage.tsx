@@ -28,13 +28,21 @@ export default function HomePage({ onNavigate }: HomePageProps) {
         </div>
 
         {/* Search bar */}
-        <button
-          className="w-full flex items-center gap-3 bg-muted rounded-xl px-4 py-3 text-left animate-fade-in stagger-1"
-          onClick={() => onNavigate("search")}
-        >
-          <Icon name="Search" size={16} className="text-muted-foreground" />
-          <span className="text-sm text-muted-foreground">Найти мастера или услугу...</span>
-        </button>
+        <div className="flex gap-2 animate-fade-in stagger-1">
+          <button
+            className="flex-1 flex items-center gap-3 bg-muted rounded-xl px-4 py-3 text-left"
+            onClick={() => onNavigate("search")}
+          >
+            <Icon name="Search" size={16} className="text-muted-foreground" />
+            <span className="text-sm text-muted-foreground">Найти мастера или услугу...</span>
+          </button>
+          <button
+            className="w-12 h-12 rounded-xl bg-foreground flex items-center justify-center flex-shrink-0"
+            onClick={() => onNavigate("map")}
+          >
+            <Icon name="Map" size={18} className="text-background" />
+          </button>
+        </div>
       </div>
 
       <div className="px-4 pt-5 space-y-6">
