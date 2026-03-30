@@ -11,13 +11,18 @@ const profileMenuItems = [
   { icon: "HelpCircle", label: "Помощь", badge: null },
 ];
 
-export default function ProfilePage() {
+interface ProfilePageProps {
+  theme: "light" | "dark";
+  onToggleTheme: () => void;
+}
+
+export default function ProfilePage({ theme, onToggleTheme }: ProfilePageProps) {
   const [isWorker, setIsWorker] = useState(false);
   const [notif, setNotif] = useState(true);
 
   return (
     <div className="pb-20 bg-background min-h-screen">
-      <div className="px-4 pt-10 pb-6 bg-white border-b border-border">
+      <div className="px-4 pt-10 pb-6 bg-card border-b border-border">
         <h1 className="text-xl font-bold mb-5 animate-fade-in">Профиль</h1>
 
         {/* Avatar + info */}
@@ -26,7 +31,7 @@ export default function ProfilePage() {
             <div className="w-16 h-16 rounded-2xl bg-secondary flex items-center justify-center font-bold text-xl text-foreground">
               ИП
             </div>
-            <button className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-primary border-2 border-white flex items-center justify-center">
+            <button className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-primary border-2 border-card flex items-center justify-center">
               <Icon name="Camera" size={10} className="text-primary-foreground" />
             </button>
           </div>
@@ -43,7 +48,7 @@ export default function ProfilePage() {
 
       <div className="px-4 pt-5 space-y-4">
         {/* Mode switcher */}
-        <div className="bg-white rounded-2xl p-4 border border-border animate-fade-in stagger-2">
+        <div className="bg-card rounded-2xl p-4 border border-border animate-fade-in stagger-2">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-semibold">Режим исполнителя</p>
@@ -90,7 +95,7 @@ export default function ProfilePage() {
           ].map((stat) => (
             <div
               key={stat.label}
-              className="bg-white rounded-2xl p-3 border border-border text-center"
+              className="bg-card rounded-2xl p-3 border border-border text-center"
             >
               <p className="text-lg font-bold">{stat.value}</p>
               <p className="text-[10px] text-muted-foreground">{stat.label}</p>
@@ -98,9 +103,21 @@ export default function ProfilePage() {
           ))}
         </div>
 
-        {/* Notifications quick toggle */}
-        <div className="bg-white rounded-2xl p-4 border border-border animate-fade-in stagger-3">
-          <div className="flex items-center justify-between">
+        {/* Theme + Notifications */}
+        <div className="bg-card rounded-2xl border border-border overflow-hidden animate-fade-in stagger-3">
+          <div className="flex items-center justify-between p-4 border-b border-border">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-lg bg-secondary flex items-center justify-center">
+                <Icon name={theme === "dark" ? "Moon" : "Sun"} size={15} />
+              </div>
+              <div>
+                <p className="text-sm font-medium">Тёмная тема</p>
+                <p className="text-[10px] text-muted-foreground">{theme === "dark" ? "Включена" : "Выключена"}</p>
+              </div>
+            </div>
+            <Switch checked={theme === "dark"} onCheckedChange={onToggleTheme} />
+          </div>
+          <div className="flex items-center justify-between p-4">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 rounded-lg bg-secondary flex items-center justify-center">
                 <Icon name="Bell" size={15} />
@@ -112,7 +129,7 @@ export default function ProfilePage() {
         </div>
 
         {/* Menu */}
-        <div className="bg-white rounded-2xl border border-border overflow-hidden animate-fade-in stagger-4">
+        <div className="bg-card rounded-2xl border border-border overflow-hidden animate-fade-in stagger-4">
           {profileMenuItems.map((item, i) => (
             <button
               key={item.label}

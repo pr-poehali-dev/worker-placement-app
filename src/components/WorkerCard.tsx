@@ -25,7 +25,7 @@ interface WorkerCardProps {
 export default function WorkerCard({ worker, onClick }: WorkerCardProps) {
   return (
     <div
-      className="bg-white rounded-2xl p-4 border border-border card-hover cursor-pointer animate-fade-in"
+      className="bg-card rounded-2xl p-4 border border-border card-hover cursor-pointer animate-fade-in"
       onClick={onClick}
     >
       <div className="flex items-start gap-3">
@@ -34,7 +34,7 @@ export default function WorkerCard({ worker, onClick }: WorkerCardProps) {
             {worker.initials}
           </div>
           {worker.available && (
-            <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-500 border-2 border-white rounded-full" />
+            <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-500 border-2 border-card rounded-full" />
           )}
         </div>
 

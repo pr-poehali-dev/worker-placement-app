@@ -9,6 +9,7 @@ import ChatPage from "@/pages/ChatPage";
 import ProfilePage from "@/pages/ProfilePage";
 import WorkerProfilePage from "@/pages/WorkerProfilePage";
 import MapPage from "@/pages/MapPage";
+import { useTheme } from "@/hooks/useTheme";
 
 type Page = "home" | "search" | "orders" | "chat" | "profile";
 
@@ -32,6 +33,7 @@ export default function App() {
   const [page, setPage] = useState<Page>("home");
   const [selectedWorker, setSelectedWorker] = useState<Worker | null>(null);
   const [showMap, setShowMap] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   const handleNavigate = (target: string) => {
     if (target === "map") {
@@ -68,7 +70,7 @@ export default function App() {
             {page === "search" && <SearchPage onWorkerSelect={handleWorkerSelect} />}
             {page === "orders" && <OrdersPage />}
             {page === "chat" && <ChatPage />}
-            {page === "profile" && <ProfilePage />}
+            {page === "profile" && <ProfilePage theme={theme} onToggleTheme={toggleTheme} />}
             <BottomNav
               active={page}
               onChange={(p) => { setPage(p); setSelectedWorker(null); }}

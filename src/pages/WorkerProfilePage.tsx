@@ -46,7 +46,7 @@ export default function WorkerProfilePage({ worker, onBack, onChat }: WorkerProf
   return (
     <div className="pb-24 bg-background min-h-screen">
       {/* Back header */}
-      <div className="flex items-center gap-3 px-4 pt-12 pb-4 bg-white border-b border-border sticky top-0 z-10">
+      <div className="flex items-center gap-3 px-4 pt-12 pb-4 bg-card border-b border-border sticky top-0 z-10">
         <button
           onClick={onBack}
           className="w-8 h-8 rounded-lg bg-secondary flex items-center justify-center"
@@ -58,14 +58,14 @@ export default function WorkerProfilePage({ worker, onBack, onChat }: WorkerProf
 
       <div className="px-4 pt-5 space-y-5">
         {/* Profile card */}
-        <div className="bg-white rounded-2xl p-5 border border-border animate-fade-in">
+        <div className="bg-card rounded-2xl p-5 border border-border animate-fade-in">
           <div className="flex items-start gap-4">
             <div className="relative">
               <div className="w-16 h-16 rounded-2xl bg-secondary flex items-center justify-center font-bold text-xl text-foreground">
                 {worker.initials}
               </div>
               {worker.available && (
-                <div className="absolute -bottom-0.5 -right-0.5 w-4 h-4 bg-green-500 border-2 border-white rounded-full" />
+                <div className="absolute -bottom-0.5 -right-0.5 w-4 h-4 bg-green-500 border-2 border-card rounded-full" />
               )}
             </div>
             <div className="flex-1">
@@ -112,7 +112,7 @@ export default function WorkerProfilePage({ worker, onBack, onChat }: WorkerProf
         </div>
 
         {/* Calendar */}
-        <div className="bg-white rounded-2xl p-4 border border-border animate-fade-in stagger-1">
+        <div className="bg-card rounded-2xl p-4 border border-border animate-fade-in stagger-1">
           <div className="flex items-center justify-between mb-3">
             <h3 className="font-semibold text-sm">Доступность</h3>
             <div className="flex items-center gap-3 text-[10px] text-muted-foreground">
@@ -139,7 +139,7 @@ export default function WorkerProfilePage({ worker, onBack, onChat }: WorkerProf
                     isSelected
                       ? "bg-primary text-primary-foreground"
                       : isAvail
-                      ? "bg-green-50 border border-green-200 hover:bg-green-100"
+                      ? "bg-green-50 border border-green-200 hover:bg-green-100 dark:bg-green-950 dark:border-green-800 dark:hover:bg-green-900"
                       : "bg-muted opacity-50 cursor-not-allowed"
                   }`}
                 >
@@ -151,8 +151,8 @@ export default function WorkerProfilePage({ worker, onBack, onChat }: WorkerProf
           </div>
 
           {selectedDate && (
-            <div className="mt-3 p-3 bg-green-50 rounded-xl border border-green-200 animate-scale-in">
-              <p className="text-xs font-medium text-green-800">
+            <div className="mt-3 p-3 bg-green-50 dark:bg-green-950 rounded-xl border border-green-200 dark:border-green-800 animate-scale-in">
+              <p className="text-xs font-medium text-green-800 dark:text-green-400">
                 ✓ Выбрана дата — мастер доступен
               </p>
             </div>
@@ -166,14 +166,14 @@ export default function WorkerProfilePage({ worker, onBack, onChat }: WorkerProf
           </h3>
           <div className="space-y-2">
             {workerReviews.length === 0 ? (
-              <div className="bg-white rounded-2xl p-4 border border-border text-center text-sm text-muted-foreground">
+              <div className="bg-card rounded-2xl p-4 border border-border text-center text-sm text-muted-foreground">
                 Отзывов пока нет
               </div>
             ) : (
               workerReviews.map((rev) => (
                 <div
                   key={rev.id}
-                  className="bg-white rounded-2xl p-4 border border-border"
+                  className="bg-card rounded-2xl p-4 border border-border"
                 >
                   <div className="flex items-start justify-between mb-2">
                     <div>
@@ -205,7 +205,7 @@ export default function WorkerProfilePage({ worker, onBack, onChat }: WorkerProf
       </div>
 
       {/* Bottom actions */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-border px-4 py-4 flex gap-3">
+      <div className="fixed bottom-0 left-0 right-0 bg-card border-t border-border px-4 py-4 flex gap-3">
         <button
           onClick={onChat}
           className="flex-1 py-3 rounded-xl border border-border text-sm font-semibold flex items-center justify-center gap-2"

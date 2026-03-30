@@ -3,9 +3,9 @@ import Icon from "@/components/ui/icon";
 import { orders } from "@/data/mockData";
 
 const statusConfig = {
-  active: { label: "Активный", color: "bg-blue-50 text-blue-700 border-blue-200" },
-  pending: { label: "Ожидает", color: "bg-amber-50 text-amber-700 border-amber-200" },
-  completed: { label: "Завершён", color: "bg-green-50 text-green-700 border-green-200" },
+  active: { label: "Активный", color: "bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-950 dark:text-blue-400 dark:border-blue-800" },
+  pending: { label: "Ожидает", color: "bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950 dark:text-amber-400 dark:border-amber-800" },
+  completed: { label: "Завершён", color: "bg-green-50 text-green-700 border-green-200 dark:bg-green-950 dark:text-green-400 dark:border-green-800" },
 };
 
 type Tab = "all" | "active" | "pending" | "completed";
@@ -20,7 +20,7 @@ export default function OrdersPage() {
 
   return (
     <div className="pb-20 bg-background min-h-screen">
-      <div className="px-4 pt-10 pb-4 bg-white border-b border-border">
+      <div className="px-4 pt-10 pb-4 bg-card border-b border-border">
         <div className="flex items-center justify-between mb-4 animate-fade-in">
           <h1 className="text-xl font-bold">Мои заказы</h1>
           <button className="flex items-center gap-1.5 bg-primary text-primary-foreground text-xs font-semibold px-3 py-2 rounded-lg">
@@ -64,7 +64,7 @@ export default function OrdersPage() {
             return (
               <div
                 key={order.id}
-                className="bg-white rounded-2xl p-4 border border-border card-hover cursor-pointer animate-fade-in"
+                className="bg-card rounded-2xl p-4 border border-border card-hover cursor-pointer animate-fade-in"
                 style={{ animationDelay: `${i * 0.06}s`, opacity: 0 }}
               >
                 <div className="flex items-start justify-between gap-2 mb-3">

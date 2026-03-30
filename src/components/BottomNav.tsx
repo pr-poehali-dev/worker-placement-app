@@ -17,7 +17,7 @@ const navItems: { id: Page; label: string; icon: string }[] = [
 
 export default function BottomNav({ active, onChange }: BottomNavProps) {
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-border">
+    <nav className="fixed bottom-0 left-0 right-0 z-50 bg-card border-t border-border">
       <div className="max-w-lg mx-auto flex">
         {navItems.map((item) => {
           const isActive = active === item.id;

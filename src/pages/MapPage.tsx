@@ -31,7 +31,7 @@ export default function MapPage({ onBack }: MapPageProps) {
   return (
     <div className="flex flex-col h-screen bg-background">
       {/* Header */}
-      <div className="flex items-center gap-3 px-4 pt-12 pb-3 bg-white border-b border-border z-20 relative">
+      <div className="flex items-center gap-3 px-4 pt-12 pb-3 bg-card border-b border-border z-20 relative">
         <button
           onClick={onBack}
           className="w-8 h-8 rounded-lg bg-secondary flex items-center justify-center"
@@ -45,7 +45,7 @@ export default function MapPage({ onBack }: MapPageProps) {
       </div>
 
       {/* Filter tabs */}
-      <div className="flex gap-1.5 px-4 py-2.5 bg-white border-b border-border z-10">
+      <div className="flex gap-1.5 px-4 py-2.5 bg-card border-b border-border z-10">
         {([
           { id: "all", label: "Все", icon: "Layers" },
           { id: "orders", label: "Заказы", icon: "ClipboardList" },
@@ -67,7 +67,7 @@ export default function MapPage({ onBack }: MapPageProps) {
       </div>
 
       {/* Map area */}
-      <div className="flex-1 relative bg-[#f0ede8] overflow-hidden">
+      <div className="flex-1 relative bg-[#f0ede8] dark:bg-[#1a1a1a] overflow-hidden">
         {/* Grid pattern for map feel */}
         <div className="absolute inset-0 opacity-[0.15]"
           style={{
@@ -92,7 +92,7 @@ export default function MapPage({ onBack }: MapPageProps) {
         </div>
 
         {/* City label */}
-        <div className="absolute top-4 left-4 bg-white/80 backdrop-blur-sm rounded-lg px-3 py-1.5 border border-white/50 z-10">
+        <div className="absolute top-4 left-4 bg-card/80 backdrop-blur-sm rounded-lg px-3 py-1.5 border border-border/50 z-10">
           <p className="text-[10px] font-mono text-muted-foreground">Москва · Центр</p>
         </div>
 
@@ -131,7 +131,7 @@ export default function MapPage({ onBack }: MapPageProps) {
 
               {/* Label tooltip */}
               {isSelected && (
-                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-white rounded-xl px-3 py-2 shadow-lg border border-border whitespace-nowrap animate-scale-in z-20 min-w-[120px]">
+                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-card rounded-xl px-3 py-2 shadow-lg border border-border whitespace-nowrap animate-scale-in z-20 min-w-[120px]">
                   <p className="text-xs font-semibold text-foreground">{point.label}</p>
                   {point.type === "worker" && (
                     <div className="flex items-center gap-1 mt-0.5">
@@ -146,7 +146,7 @@ export default function MapPage({ onBack }: MapPageProps) {
                       {point.status === "active" ? "Активный" : "Ожидает"}
                     </span>
                   )}
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 w-2 h-2 bg-white border-r border-b border-border rotate-45 -mt-1" />
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 w-2 h-2 bg-card border-r border-b border-border rotate-45 -mt-1" />
                 </div>
               )}
             </button>
@@ -155,7 +155,7 @@ export default function MapPage({ onBack }: MapPageProps) {
       </div>
 
       {/* Bottom info panel */}
-      <div className="bg-white border-t border-border px-4 py-4 space-y-3 z-20 relative">
+      <div className="bg-card border-t border-border px-4 py-4 space-y-3 z-20 relative">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4 text-xs">
             <span className="flex items-center gap-1.5">

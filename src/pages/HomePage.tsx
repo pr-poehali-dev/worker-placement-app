@@ -10,7 +10,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
   return (
     <div className="pb-20 bg-background min-h-screen">
       {/* Header */}
-      <div className="px-4 pt-10 pb-6 bg-white border-b border-border">
+      <div className="px-4 pt-10 pb-6 bg-card border-b border-border">
         <div className="flex items-start justify-between mb-4 animate-fade-in">
           <div>
             <p className="text-xs text-muted-foreground font-mono">Москва</p>
@@ -47,8 +47,8 @@ export default function HomePage({ onNavigate }: HomePageProps) {
 
       <div className="px-4 pt-5 space-y-6">
         {/* Banner */}
-        <div className="bg-foreground text-background rounded-2xl p-5 animate-fade-in stagger-2">
-          <p className="text-xs font-mono text-background/50 mb-1">Специальное предложение</p>
+        <div className="bg-foreground text-background dark:bg-card dark:text-foreground dark:border dark:border-border rounded-2xl p-5 animate-fade-in stagger-2">
+          <p className="text-xs font-mono text-background/50 dark:text-muted-foreground mb-1">Специальное предложение</p>
           <h2 className="text-lg font-bold leading-snug mb-3">
             Первый заказ<br />со скидкой 15%
           </h2>
@@ -75,7 +75,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
             {categories.map((cat, i) => (
               <button
                 key={cat.id}
-                className="flex flex-col items-center gap-1.5 p-3 bg-white rounded-xl border border-border card-hover"
+                className="flex flex-col items-center gap-1.5 p-3 bg-card rounded-xl border border-border card-hover"
                 style={{ animationDelay: `${i * 0.04}s` }}
                 onClick={() => onNavigate("search")}
               >
@@ -121,7 +121,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
           ].map((stat) => (
             <div
               key={stat.label}
-              className="bg-white rounded-2xl p-4 border border-border text-center"
+              className="bg-card rounded-2xl p-4 border border-border text-center"
             >
               <p className="text-xl font-bold text-foreground">{stat.value}</p>
               <p className="text-xs text-muted-foreground mt-0.5">{stat.label}</p>

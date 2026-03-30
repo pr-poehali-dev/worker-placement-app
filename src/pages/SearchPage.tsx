@@ -48,7 +48,7 @@ export default function SearchPage({ onWorkerSelect }: SearchPageProps) {
   return (
     <div className="pb-20 bg-background min-h-screen">
       {/* Header */}
-      <div className="px-4 pt-10 pb-4 bg-white border-b border-border sticky top-0 z-10">
+      <div className="px-4 pt-10 pb-4 bg-card border-b border-border sticky top-0 z-10">
         <h1 className="text-xl font-bold mb-3 animate-fade-in">Найти мастера</h1>
 
         {/* Search input */}

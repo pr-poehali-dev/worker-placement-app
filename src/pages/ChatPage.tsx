@@ -11,7 +11,7 @@ export default function ChatPage() {
     return (
       <div className="flex flex-col h-screen bg-background">
         {/* Chat header */}
-        <div className="flex items-center gap-3 px-4 pt-12 pb-4 bg-white border-b border-border">
+        <div className="flex items-center gap-3 px-4 pt-12 pb-4 bg-card border-b border-border">
           <button
             onClick={() => setActiveChat(null)}
             className="w-8 h-8 rounded-lg bg-secondary flex items-center justify-center"
@@ -33,8 +33,8 @@ export default function ChatPage() {
         </div>
 
         {/* Order context */}
-        <div className="px-4 py-2 bg-blue-50 border-b border-blue-100">
-          <div className="flex items-center gap-2 text-xs text-blue-700">
+        <div className="px-4 py-2 bg-blue-50 dark:bg-blue-950 border-b border-blue-100 dark:border-blue-800">
+          <div className="flex items-center gap-2 text-xs text-blue-700 dark:text-blue-400">
             <Icon name="ClipboardList" size={12} />
             <span>Заказ {chat?.orderId} · Замена смесителя на кухне</span>
           </div>
@@ -51,7 +51,7 @@ export default function ChatPage() {
                 className={`max-w-[75%] px-4 py-2.5 rounded-2xl text-sm ${
                   msg.sender === "client"
                     ? "bg-foreground text-background rounded-br-sm"
-                    : "bg-white border border-border text-foreground rounded-bl-sm"
+                    : "bg-card border border-border text-foreground rounded-bl-sm"
                 }`}
               >
                 <p className="leading-relaxed">{msg.text}</p>
@@ -68,7 +68,7 @@ export default function ChatPage() {
         </div>
 
         {/* Input */}
-        <div className="px-4 py-4 bg-white border-t border-border pb-6">
+        <div className="px-4 py-4 bg-card border-t border-border pb-6">
           <div className="flex items-center gap-2 bg-muted rounded-xl px-4 py-2.5">
             <input
               value={inputText}
@@ -95,7 +95,7 @@ export default function ChatPage() {
 
   return (
     <div className="pb-20 bg-background min-h-screen">
-      <div className="px-4 pt-10 pb-4 bg-white border-b border-border">
+      <div className="px-4 pt-10 pb-4 bg-card border-b border-border">
         <h1 className="text-xl font-bold animate-fade-in">Сообщения</h1>
       </div>
 
@@ -110,7 +110,7 @@ export default function ChatPage() {
             <button
               key={msg.id}
               onClick={() => setActiveChat(msg.id)}
-              className="w-full bg-white rounded-2xl p-4 border border-border card-hover text-left animate-fade-in"
+              className="w-full bg-card rounded-2xl p-4 border border-border card-hover text-left animate-fade-in"
               style={{ animationDelay: `${i * 0.06}s`, opacity: 0 }}
             >
               <div className="flex items-start gap-3">
